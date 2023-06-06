@@ -30,6 +30,8 @@
         <div id="TheArticles">
             <!-- <article>
                 <h3>Recipe 1</h3>
+                <h4>Date goes here</h4>
+                <h5>Category</h5>
                 <a href="./article-individual.html">
                     <img src="./cache/recipe1.jpeg" alt="Picture Of Recipe 1">
                 </a>
@@ -43,43 +45,105 @@
     </section>
 
     <script defer>
-        function GenerateArticles(NumberOfArticles)
+
+        let FakeArticleData = [
+            {
+                Title : "Recipe 1",
+                Date : "2023/01/01",
+                Category : "Lunch",
+                ImageLink : "./cache/recipe1.jpeg",
+                Link : "./article-individual.html",
+                Description : "Meat Description"
+            },
+            {
+                Title : "Recipe 2",
+                Date : "2023/02/01",
+                Category : "Dessert",
+                ImageLink : "./cache/recipe2.jpeg",
+                Link : "./article-individual.html",
+                Description : "ummm dessert"
+            },
+            {
+                Title : "Recipe 3",
+                Date : "2023/03/01",
+                Category : "Lunch",
+                ImageLink : "./cache/recipe3.jpeg",
+                Link : "./article-individual.html",
+                Description : "Looks like some pizza"
+            },
+            {
+                Title : "Recipe 4",
+                Date : "2023/04/01",
+                Category : "Lunch",
+                ImageLink : "./cache/recipe4.jpeg",
+                Link : "./article-individual.html",
+                Description : "Some Couscous Description goes here"
+            },
+            {
+                Title : "Recipe 5",
+                Date : "2023/05/01",
+                Category : "Lunch",
+                ImageLink : "./cache/recipe5.jpeg",
+                Link : "./article-individual.html",
+                Description : "And that's a salad"
+            },
+            {
+                Title : "Recipe 6",
+                Date : "2023/06/01",
+                Category : "Lunch",
+                ImageLink : "./cache/recipe6.jpeg",
+                Link : "./article-individual.html",
+                Description : "Some tomato sauce description"
+            }
+        ];
+
+
+        function GenerateArticles(ArticlesData)
         {
             let ArticlesBox = document.getElementById("TheArticles");
 
-            for (let Index = 1; Index <= NumberOfArticles; Index++) {
+            // for (let Index = 1; Index <= ArticlesData.length; Index++) {
+            ArticlesData.forEach((Each, Index) => {
 
                 let NewArticle = document.createElement("article");
-                NewArticle.id = `Recipe ${Index}`;
+                NewArticle.id = `recipe${Index + 1}`;
 
                 let Title = document.createElement("h3");
-                Title.innerHTML = `Recipe ${Index}`;
+                Title.innerHTML = Each.Title;
+
+                let Date = document.createElement("h4");
+                Date.innerHTML = Each.Date;
+
+                let Category = document.createElement("h5");
+                Date.innerHTML = Each.Category;
 
                 let Anchor = document.createElement("a");
-                Anchor.href = `./recipe${Index}.html`;
+                Anchor.href = Each.Link;
 
                 let Image = document.createElement("img");
-                Image.src=`./cache/recipe${Index}.jpeg`;
-                Image.alt=`Picture Of Recipe ${Index}`;
+                Image.src= Each.ImageLink;
+                Image.alt=`Picture Of ${Each.Title}`;
                 
                 Anchor.append(Image);
 
                 let Description = document.createElement("span");
-                Description.innerHTML = "Description goes here";
+                Description.innerHTML = Each.Description;
 
                 let Button = document.createElement("button");
                 Button.innerHTML = "Click To Open";
 
-                NewArticle.append(Title, Anchor, Description, Button);
+                NewArticle.append(Title, Date, Category, Anchor, Description, Button);
 
                 // ArticlesBox.append(NewArticle);
 
                 // ArticlesBox.insertAdjacentElement("beforeend", NewArticle);
                 ArticlesBox.appendChild(NewArticle);
-            }
+            });
         }
 
-        GenerateArticles(6);
+        GenerateArticles(FakeArticleData);
+
+
 
         let LoadMore = function (){
             //in this example we'll simply pretend to fetch results
