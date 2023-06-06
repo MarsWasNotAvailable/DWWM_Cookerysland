@@ -115,7 +115,7 @@
                 Date.innerHTML = Each.Date;
 
                 let Category = document.createElement("h5");
-                Date.innerHTML = Each.Category;
+                Category.innerHTML = Each.Category;
 
                 let Anchor = document.createElement("a");
                 Anchor.href = Each.Link;
@@ -135,7 +135,6 @@
                 NewArticle.append(Title, Date, Category, Anchor, Description, Button);
 
                 // ArticlesBox.append(NewArticle);
-
                 // ArticlesBox.insertAdjacentElement("beforeend", NewArticle);
                 ArticlesBox.appendChild(NewArticle);
             });
